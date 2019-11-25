@@ -39,7 +39,7 @@ def scrap_unit(soup):
 
     # New With Tags
     cond_tag = get_value(soup, 'p', {'class': 'condition-tags'}, 'NO')
-    if cond_tag:
+    if not cond_tag == 'NO':
         title = title.replace(cond_tag, '').strip()
         cond_tag = 'YES'
 
