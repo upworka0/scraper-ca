@@ -127,7 +127,7 @@ def store_result(arr):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('--url', help='url', required=True)
+    parser.add_argument("url", help='URL')
     args = parser.parse_args()
     url = args.url
     print("URL is", url)
