@@ -49,9 +49,6 @@ def scrap_unit(soup):
     # Description
     description = get_value(soup, 'div', {'class', 'description'})
 
-    # Size
-    size = get_value(soup, 'label', {'class', 'size-box'})
-
     # Prices
     listing_price = get_value(soup, 'div', {'class', 'price'})
     ori_price = get_value(soup, 'span', {'class', 'original'})
@@ -75,12 +72,19 @@ def scrap_unit(soup):
         'Description': description,
         'Photo': images,
         'Brand': brand,
-        'Size': size,
-        "Custom Size": "",
         'Listing Price': listing_price,
         'Original Price': ori_price,
         'New With Tags': cond_tag
     }
+
+    # Size
+    size = get_value(soup, 'label', {'class', 'size-box'})
+    if len(size) > 3:
+        result.update({'Size': ''})
+        result.update({'Custom Size': size})
+    else:
+        result.update({'Custom Size': ''})
+        result.update({'Size': size})
 
     # tag-lists
     tag_lists = soup.find_all('div', {'class': 'tag-list'})
